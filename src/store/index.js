@@ -20,7 +20,7 @@ export default new Vuex.Store({
   actions: {
     loadPlayers({ commit }, payload) {
       commit('SET_LOADING', true);
-      axios.get(`https://api.fantasy.nfl.com/v1/players/stats?statType=seasonStats&season=${payload.season}&week=${payload.week}&format=json`).then((result) => {
+      axios.get(`https://api.fantasy.nfl.com/v1/players/stats?statType=seasonStats&season=${payload.season}&week=${payload.week}&position=${payload.position}&format=json`).then((result) => {
         commit('SAVE_PLAYERS', result.data.players);
         commit('SET_LOADING', false);
       }).catch((error) => {
