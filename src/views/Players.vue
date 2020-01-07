@@ -24,53 +24,21 @@
         </b-field>
 
       <button v-on:click="getPlayers(season, week)">Get Players</button>
-      <b-table
-            :data="players"
-            narrowed
-            :loading="false"
-            mobile-cards>
-
-            <template slot-scope="props">
-                <b-table-column field="name" label="Name">
-                  {{ props.row.name }}
-                </b-table-column>
-                <b-table-column field="position" label="Position">
-                  {{ props.row.position }}
-                </b-table-column>
-                <b-table-column field="team" label="Team">
-                  {{ props.row.teamAbbr }}
-                </b-table-column>
-                <b-table-column field="points" label="Points">
-                  {{ props.row.weekPts }}
-                </b-table-column>
-                <b-table-column field="points" label="Projected Points">
-                  {{ props.row.weekProjectedPts }}
-                </b-table-column>
-            </template>
-
-            <template slot="empty">
-                <section class="section">
-                  <div class="content has-text-grey has-text-centered">
-                      <p>
-                          <b-icon
-                              icon="emoticon-sad"
-                              size="is-large">
-                          </b-icon>
-                      </p>
-                      <p>Nothing here.</p>
-                  </div>
-                </section>
-            </template>
-        </b-table>
+      <stat-table :players="players" />
     </div>
   </section>
 </template>
 <script>
+import StatTable from '@/components/StatTable.vue';
+
 export default {
   name: 'Players',
+  components: {
+    StatTable,
+  },
   data() {
     return {
-      seasons: [2010, 2011, 2012, 2013, 2014, 2015],
+      seasons: [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018],
       weeks: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
       week: '',
       season: '',
