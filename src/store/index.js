@@ -14,8 +14,8 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    loadPlayers({ commit }) {
-      axios.get('https://api.fantasy.nfl.com/v1/players/stats?statType=seasonStats&season=2017&week=1&format=json').then((result) => {
+    loadPlayers({ commit }, payload) {
+      axios.get(`https://api.fantasy.nfl.com/v1/players/stats?statType=seasonStats&season=${payload.season}&week=${payload.week}&format=json`).then((result) => {
         commit('SAVE_PLAYERS', result.data.players);
       }).catch((error) => {
         throw new Error(`API ${error}`);
