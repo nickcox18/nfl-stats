@@ -8,6 +8,7 @@ export default new Vuex.Store({
   state: {
     players: [],
     isLoading: false,
+    comparePlayerModal: false,
   },
   mutations: {
     SAVE_PLAYERS(state, players) {
@@ -15,6 +16,9 @@ export default new Vuex.Store({
     },
     SET_LOADING(state, isLoading) {
       state.isLoading = isLoading;
+    },
+    SET_COMPARE_PLAYER_MODAL(state, comparePlayerModal) {
+      state.comparePlayerModal = comparePlayerModal;
     },
   },
   actions: {
@@ -26,6 +30,9 @@ export default new Vuex.Store({
       }).catch((error) => {
         throw new Error(`API ${error}`);
       });
+    },
+    toggleComparePlayerModal({ commit }, payload) {
+      commit('SET_COMPARE_PLAYER_MODAL', payload);
     },
   },
   modules: {

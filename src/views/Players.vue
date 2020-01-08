@@ -44,7 +44,11 @@
           </b-button>
         </div>
       </div>
-      <stat-table :players="players" />
+      <stat-table :players="players"
+                  v-on:updatePlayerGroup="getPlayerGroup"
+                  :playerGroup="playerGroup"
+      />
+      <compare-modal :playerGroup="playerGroup" :comparePlayerModal="comparePlayerModal" />
       <bottom-nav />
     </div>
   </section>
@@ -52,21 +56,25 @@
 <script>
 import StatTable from '@/components/StatTable.vue';
 import BottomNav from '@/components/BottomNav.vue';
+import CompareModal from '@/components/CompareModal.vue';
 
 export default {
   name: 'Players',
   components: {
     StatTable,
     BottomNav,
+    CompareModal,
   },
   data() {
     return {
       seasons: [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019],
       weeks: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
       positions: ['QB', 'RB', 'WR', 'TE', 'K', 'DEF', 'DL', 'LB', 'DB'],
+      playerGroup: [],
       week: '',
       season: '',
       position: '',
+      comparePlayerModal: false,
     };
   },
   created() {
@@ -76,6 +84,9 @@ export default {
     getPlayers(season, week, position) {
       const payload = { season, week, position };
       this.$store.dispatch('loadPlayers', payload);
+    },
+    getPlayerGroup(value) {
+      this.playerGroup.push(value);
     },
   },
   computed: {

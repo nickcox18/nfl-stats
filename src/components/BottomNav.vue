@@ -3,13 +3,11 @@
     <template slot="end">
       <b-navbar-item tag="div">
           <div class="buttons">
-              <a class="button is-primary">
-                  <strong>Get Player Info</strong>
-              </a>
-              <a class="button is-light">
+              <a v-on:click="openComparePlayerModal" class="button is-primary">
                   Compare Players
               </a>
           </div>
+
       </b-navbar-item>
     </template>
   </b-navbar>
@@ -18,13 +16,10 @@
 <script>
 export default {
   name: 'BottomNav',
-  props: {
-    // players: Array,
-  },
-  computed: {
-    // isLoading() {
-    //   return this.$store.state.isLoading;
-    // },
+  methods: {
+    openComparePlayerModal() {
+      this.$store.dispatch('toggleComparePlayerModal', true);
+    },
   },
 };
 </script>

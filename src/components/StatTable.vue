@@ -6,6 +6,10 @@
         mobile-cards>
 
         <template slot-scope="props">
+            <b-checkbox
+                :native-value="props.row"
+                v-on:input="$emit('updatePlayerGroup', props.row)">
+            </b-checkbox>
             <b-table-column field="name" label="Name">
               {{ props.row.name }}
             </b-table-column>
@@ -44,10 +48,14 @@ export default {
   name: 'StatTable',
   props: {
     players: Array,
+    playerGroup: Array,
   },
   computed: {
     isLoading() {
       return this.$store.state.isLoading;
+    },
+    computedPlayerGroup() {
+      return this.playerGroup;
     },
   },
 };
