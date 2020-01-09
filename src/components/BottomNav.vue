@@ -3,7 +3,7 @@
     <template slot="end">
       <b-navbar-item tag="div">
           <div class="buttons">
-              <a v-on:click="openComparePlayerModal" class="button is-primary">
+              <a v-on:click="setComparedPlayers(playerGroup)" class="button is-primary">
                   Compare Players
               </a>
           </div>
@@ -16,9 +16,13 @@
 <script>
 export default {
   name: 'BottomNav',
+  props: {
+    playerGroup: Array,
+  },
   methods: {
-    openComparePlayerModal() {
-      this.$store.dispatch('toggleComparePlayerModal', true);
+    setComparedPlayers(playerGroup) {
+      this.$store.dispatch('setComparedPlayer', playerGroup);
+      this.$router.push('/compare');
     },
   },
 };

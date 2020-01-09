@@ -7,6 +7,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     players: [],
+    comparedPlayers: [],
     isLoading: false,
     comparePlayerModal: false,
   },
@@ -14,11 +15,11 @@ export default new Vuex.Store({
     SAVE_PLAYERS(state, players) {
       state.players = players;
     },
+    SET_COMPARED_PLAYERS(state, comparedPlayers) {
+      state.comparedPlayers = comparedPlayers;
+    },
     SET_LOADING(state, isLoading) {
       state.isLoading = isLoading;
-    },
-    SET_COMPARE_PLAYER_MODAL(state, comparePlayerModal) {
-      state.comparePlayerModal = comparePlayerModal;
     },
   },
   actions: {
@@ -31,8 +32,8 @@ export default new Vuex.Store({
         throw new Error(`API ${error}`);
       });
     },
-    toggleComparePlayerModal({ commit }, payload) {
-      commit('SET_COMPARE_PLAYER_MODAL', payload);
+    setComparedPlayer({ commit }, payload) {
+      commit('SET_COMPARED_PLAYERS', payload);
     },
   },
   modules: {

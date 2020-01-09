@@ -48,22 +48,19 @@
                   v-on:updatePlayerGroup="getPlayerGroup"
                   :playerGroup="playerGroup"
       />
-      <compare-modal :playerGroup="playerGroup" :comparePlayerModal="comparePlayerModal" />
-      <bottom-nav />
+      <bottom-nav :playerGroup="playerGroup" />
     </div>
   </section>
 </template>
 <script>
 import StatTable from '@/components/StatTable.vue';
 import BottomNav from '@/components/BottomNav.vue';
-import CompareModal from '@/components/CompareModal.vue';
 
 export default {
   name: 'Players',
   components: {
     StatTable,
     BottomNav,
-    CompareModal,
   },
   data() {
     return {
@@ -74,7 +71,6 @@ export default {
       week: '',
       season: '',
       position: '',
-      comparePlayerModal: false,
     };
   },
   created() {
